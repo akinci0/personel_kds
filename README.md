@@ -45,7 +45,7 @@ GET /api/dashboard/kds-analytics/:districtId: Departman bazlı personel ihtiyac�
 
 DELETE /api/dashboard/workload/:id: Veri silme işlemi (İş kuralı tetikleyicisine tabidir).
 
-📊 ER Diyagramı
+ER Diyagramı
 Veritabanı mimarisi, ilçeler, iş yükü verileri ve departman standartları arasındaki ilişkileri 3. Normal Form (3NF) kurallarına uygun şekilde organize eder.
 
 Kurulum ve Çalıştırma
