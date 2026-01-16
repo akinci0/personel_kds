@@ -49,7 +49,7 @@ Uygulama: Bir kayıt üzerinde güncelleme yapıldığında, guncelleme_tarihi s
 
 Uygulama: Backend katmanında hesaplanan bu risk durumu, frontend tarafında kullanıcıya görsel uyarılar (kırmızı renk kodları) olarak sunulur.
 
-API Endpoint Listesi
+API Endpoint Listesi:
 Sistem, RESTful API standartlarında şu uç noktaları sağlar:
 
 GET /api/dashboard/summary: Sistem genelindeki temel KPI özetlerini döner.
