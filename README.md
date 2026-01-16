@@ -1,5 +1,5 @@
-Swissôtel Personel Karar Destek Sistemi (KDS)
-Bu proje, İzmir bölgesindeki Swissôtel operasyonları için geliştirilmiş, veri odaklı bir Personel Karar Destek Sistemi (KDS) uygulamasıdır. Sistem; doluluk oranları, verimlilik metrikleri ve personel devir oranlarını analiz ederek yöneticilerin operasyonel kararlarını optimize etmeyi amaçlar.
+Hilton Hotel Personel Karar Destek Sistemi (KDS)
+Bu proje, İzmir bölgesindeki Hilton Hotel operasyonları için geliştirilmiş, veri odaklı bir Personel Karar Destek Sistemi (KDS) uygulamasıdır. Sistem; doluluk oranları, verimlilik metrikleri ve personel devir oranlarını analiz ederek yöneticilerin operasyonel kararlarını optimize etmeyi amaçlar.
 
 Kullanılan Teknolojiler
 Frontend: React (Vite), Leaflet (Harita), Chart.js (Veri Görselleştirme).
@@ -45,7 +45,7 @@ GET /api/dashboard/kds-analytics/:districtId: Departman bazlı personel ihtiyac�
 
 DELETE /api/dashboard/workload/:id: Veri silme işlemi (İş kuralı tetikleyicisine tabidir).
 
-ER Diyagramı
+📊 ER Diyagramı
 Veritabanı mimarisi, ilçeler, iş yükü verileri ve departman standartları arasındaki ilişkileri 3. Normal Form (3NF) kurallarına uygun şekilde organize eder.
 
 Kurulum ve Çalıştırma
@@ -60,8 +60,9 @@ DB_PASSWORD=root
 DB_NAME=personel_kds
 DB_PORT=8889
 PORT=5001
-(Not: Frontend tarafında VITE_API_BASE=http:localhost:5001 değişkeni kullanılmaktadır.)
+(Not: Frontend tarafında VITE_API_BASE=http://localhost:5001 değişkeni kullanılmaktadır.)
 
 2. Çalıştırma Komutları
 Backend: node app.js
+
 Frontend: npm run dev
