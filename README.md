@@ -58,8 +58,6 @@ GET /api/trends/:districtId: Belirli bir bölgenin dönemsel trend analizlerini 
 
 GET /api/dashboard/kds-analytics/:districtId: Departman bazlı personel ihtiyacı ve risk analizini sunar.
 
-DELETE /api/dashboard/workload/:id: Veri silme işlemi (İş kuralı tetikleyicisine tabidir).
-
 ER Diyagramı
 Veritabanı mimarisi, ilçeler, iş yükü verileri ve departman standartları arasındaki ilişkileri 3. Normal Form (3NF) kurallarına uygun şekilde organize eder.
 
