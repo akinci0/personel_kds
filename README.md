@@ -22,15 +22,30 @@ Models: Veritabanı sorgularının ve veri erişiminin yönetildiği katman.
 Config/DB: Veritabanı bağlantısı ve çevre değişkenlerinin (Environment) yapılandırıldığı katman.
 
 İş Kuralları ve Senaryolar (Business Rules)
-Projenin veri bütünlüğünü sağlamak amacıyla en az 2 özel iş senaryosu veritabanı seviyesinde SQL Triggers (Tetikleyiciler) kullanılarak uygulanmıştır:
+Projenin veri güvenliğini ve operasyonel zekasını sağlamak amacıyla veritabanı seviyesinde çalışan 3 adet SQL Trigger (Tetikleyici) geliştirilmiştir. Bu kurallar manuel müdahaleye gerek kalmadan otomatik olarak çalışır:
 
-Senaryo 1: Geçmiş Verilerin Korunması (Silme Engeli)
-Açıklama: Tarihsel analizlerin ve raporların doğruluğunu korumak adına, geçmiş dönemlere ait operasyonel veriler sistemden silinemez.
+Senaryo 1: Hatalı Veri Girişini Engelleme (Data Validation)
+Açıklama: Otelcilik matematiğinde doluluk oranı %0'ın altında veya %100'ün üzerinde olamaz. Kullanıcı hatalarını önlemek için bu kontrol veritabanında sağlanır.
 
-Uygulama: is_yuku tablosu üzerinde tanımlı olan BEFORE DELETE tetikleyicisi, silinmek istenen kaydın tarihini bugünün tarihiyle kıyaslar ve geçmiş veriler için işlemi SIGNAL SQLSTATE ile engeller.
+Uygulama: Veri girişi veya güncellemesi sırasında doluluk_orani kontrol edilir.
 
-Senaryo 2: Kritik Risk Tespiti ve Görselleştirme
-Açıklama: Personel devir oranı (Turnover) %12'den yüksek veya fazla mesai saati 45 saati aşan bölgeler "KRİTİK" olarak işaretlenir.
+Eğer değer > 100 veya < 0 ise; sistem işlemi reddeder ve "HATA: Doluluk oranı %100 den büyük olamaz!" veya "negatif olamaz" uyarısını döndürür.
+
+Senaryo 2: Otomatik Risk Analizi ve Sınıflandırma
+Açıklama: Yöneticilerin her departmanı tek tek incelemesine gerek kalmadan, iş yükü yoğunluğu sistem tarafından otomatik olarak etiketlenir.
+
+Uygulama: Kayıt eklenirken veya güncellenirken fazla_mesai_saati verisine bakılır ve risk_durumu sütunu otomatik hesaplanır:
+
+> 40 Saat: 'KRITIK' (Kırmızı Alarm)
+
+> 20 Saat: 'YUKSEK' (Sarı Alarm)
+
+Diğerleri: 'NORMAL' (Yeşil)
+
+Senaryo 3: Veri Güncelliği Takibi (Audit Trail)
+Açıklama: Veriler üzerinde yapılan her değişikliğin zaman damgası tutulmalıdır.
+
+Uygulama: Bir kayıt üzerinde güncelleme yapıldığında, guncelleme_tarihi sütunu manuel giriş gerektirmeden otomatik olarak o anki sunucu saatine (NOW()) eşitlenir.
 
 Uygulama: Backend katmanında hesaplanan bu risk durumu, frontend tarafında kullanıcıya görsel uyarılar (kırmızı renk kodları) olarak sunulur.
 
